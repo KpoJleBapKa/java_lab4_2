@@ -51,4 +51,5 @@ public class Decoder {
         int newIndex = (index + 1) % consonants.length;
         return consonants[newIndex];
     }
+    //
 }
