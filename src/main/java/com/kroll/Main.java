@@ -6,17 +6,21 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Enter the encrypted message (or type 'exit' to quit): ");
-            String encryptedMessage = scanner.nextLine();
+            System.out.println("Enter the message (or type 'exit' to quit): ");
+            String originalMessage = scanner.nextLine();
 
-            if (encryptedMessage.equalsIgnoreCase("exit")) {
+            if (originalMessage.equalsIgnoreCase("exit")) {
                 System.out.println("Exiting...");
                 break;
             }
 
-            String decodedMessage = Decoder.decode(encryptedMessage);
-            System.out.println("Decoded message: " + decodedMessage);
+            String vowelEncoded = Encoder.encodeVowelSubstitution(originalMessage);
+            String consonantEncoded = Encoder.encodeConsonantSubstitution(originalMessage);
+
+            System.out.println("Original: " + originalMessage);
+            System.out.println("Vowel Encoded: " + vowelEncoded + ", Decoded: " + Decoder.decode(vowelEncoded));
+            System.out.println("Consonant Encoded: " + consonantEncoded + ", Decoded: " + Decoder.decode(consonantEncoded));
         }
     }
-    //
 }
+
