@@ -1,4 +1,5 @@
 package com.kroll;
+
 import java.util.Scanner;
 
 public class Main {
@@ -18,8 +19,8 @@ public class Main {
             String consonantEncoded = Encoder.encodeConsonantSubstitution(originalMessage);
 
             System.out.println("Original: " + originalMessage);
-            System.out.println("Vowel Encoded: " + vowelEncoded + ", Decoded: " + Decoder.decode(vowelEncoded));
-            System.out.println("Consonant Encoded: " + consonantEncoded + ", Decoded: " + Decoder.decode(consonantEncoded));
+            System.out.println("Vowel Encoded: " + vowelEncoded + ", Decoded: " + Decoder.decodeVowels(vowelEncoded));
+            System.out.println("Consonant Encoded: " + consonantEncoded + ", Decoded: " + Decoder.decodeConsonants(consonantEncoded));
         }
     }
 }

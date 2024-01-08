@@ -22,7 +22,7 @@ public class Encoder {
             if (Character.isLetter(letter)) {
                 char lowerCaseLetter = Character.toLowerCase(letter);
                 if (isConsonant(lowerCaseLetter)) {
-                    char newLetter = getNewConsonant(consonants, lowerCaseLetter);
+                    char newLetter = getNextConsonant(consonants, lowerCaseLetter);
                     encodedMessage.append(Character.isUpperCase(letter) ? Character.toUpperCase(newLetter) : newLetter);
                 } else {
                     encodedMessage.append(letter);
@@ -38,10 +38,10 @@ public class Encoder {
         return "bcdfghjklmnpqrstvwxyz".indexOf(letter) != -1;
     }
 
-    private static char getNewConsonant(char[] consonants, char letter) {
+    private static char getNextConsonant(char[] consonants, char letter) {
         char lowerCaseLetter = Character.toLowerCase(letter);
         int index = new String(consonants).indexOf(lowerCaseLetter);
-        int newIndex = (index - 1 + consonants.length) % consonants.length;
+        int newIndex = (index + 1) % consonants.length;
         return consonants[newIndex];
     }
 }

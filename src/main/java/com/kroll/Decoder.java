@@ -1,18 +1,7 @@
 package com.kroll;
 
 public class Decoder {
-    public static String decode(String message) {
-        if (message == null || message.isEmpty()) {
-            return message;
-        }
-
-        String decodedVowels = replaceVowels(message);
-        String decodedConsonants = replaceConsonants(decodedVowels);
-
-        return decodedConsonants;
-    }
-
-    private static String replaceVowels(String message) {
+    public static String decodeVowels(String message) {
         return message
                 .replaceAll("1", "a")
                 .replaceAll("2", "e")
@@ -21,7 +10,7 @@ public class Decoder {
                 .replaceAll("5", "u");
     }
 
-    private static String replaceConsonants(String message) {
+    public static String decodeConsonants(String message) {
         char[] consonants = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
         StringBuilder decodedMessage = new StringBuilder();
 
@@ -29,7 +18,7 @@ public class Decoder {
             if (Character.isLetter(letter)) {
                 char lowerCaseLetter = Character.toLowerCase(letter);
                 if (isConsonant(lowerCaseLetter)) {
-                    char newLetter = getNewConsonant(consonants, lowerCaseLetter);
+                    char newLetter = getPreviousConsonant(consonants, lowerCaseLetter);
                     decodedMessage.append(Character.isUpperCase(letter) ? Character.toUpperCase(newLetter) : newLetter);
                 } else {
                     decodedMessage.append(letter);
@@ -45,11 +34,10 @@ public class Decoder {
         return "bcdfghjklmnpqrstvwxyz".indexOf(letter) != -1;
     }
 
-    private static char getNewConsonant(char[] consonants, char letter) {
+    private static char getPreviousConsonant(char[] consonants, char letter) {
         char lowerCaseLetter = Character.toLowerCase(letter);
         int index = new String(consonants).indexOf(lowerCaseLetter);
-        int newIndex = (index + 1) % consonants.length;
+        int newIndex = (index - 1 + consonants.length) % consonants.length;
         return consonants[newIndex];
     }
-    //
 }
